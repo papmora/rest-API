@@ -25,11 +25,11 @@ router.post('/', (req, res) => {
                 res.status(405).json({error: 'Ocurrio un error al intentar registrar una nueva reservacion, no indico la placa'});
             }
         }
-        else {
-            res.status(405).json({error: 'Ocurrio un error al intentar registrar una nueva reservacion, no hay espacios vacios'});
-
-        }
+        
     });
+    //res.status(405).json({error: 'Ocurrio un error al intentar registrar una nueva reservacion, no hay espacios vacios'});
+
+    
     
     
 });

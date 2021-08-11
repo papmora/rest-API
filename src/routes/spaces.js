@@ -9,6 +9,17 @@ router.get('/', (req, res) => {
     res.json(spaces);
 });
 
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    _.each(spaces, (space, i) => {
+        if (space.id === id) {
+            res.json(space)
+        }
+    });
+    //res.status(405).json({error: 'Ocurrio un error, el id ingresado no se encuentra registrado'});   
+
+});
+
 router.post('/', (req, res) => {
     const id = spaces.length + 1;
     const {estado} = req.body;

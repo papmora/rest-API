@@ -11,7 +11,7 @@ const morgan = require('morgan');
 /** Se hace uso de CORS para que la aplicacion en React pueda acceder 
  * a las solicitudes del API */
 app.use(cors({
-    origin: 'localhost:3001' 
+    origin: '*' 
 }));
 
 

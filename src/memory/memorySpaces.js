@@ -1,10 +1,10 @@
 let spaces = [
     { 
-    "estado": "free",
+    "estado": "taken",
     "id": "1"
     },
     {
-    "estado": "taken",
+    "estado": "free",
     "id": "2" 
     }
 ];
