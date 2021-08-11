@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const router = new Router();
 const _ = require('underscore');
+const spaces = require('../memory/memory');
 
-const spaces = [1,2,3,4];
+//const spaces = [1,2,3,4];
 
 
 router.get('/', (req, res) => {
