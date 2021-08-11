@@ -1,8 +1,11 @@
 const { Router } = require('express');
 const router = new Router();
 const _ = require('underscore');
+//const spaces = require('./routes/spaces');
 
-const reservations = [];
+const reservations = [{placa:"BDF3647",
+                        spaceId:"123",
+                        hour:"123"}];
 
 router.get('/', (req, res) => {
     res.json(reservations);

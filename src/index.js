@@ -5,7 +5,8 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
-const {Spaces} = require('./routes/spaces.js');
+
+
 
 /** Se hace uso de CORS para que la aplicacion en React pueda acceder 
  * a las solicitudes del API */
@@ -31,5 +32,5 @@ app.use('/api/reservations', require('./routes/reservations'));
 /** Se inicia el servidor en el puerto determinado o bien el 3000 por defecto */
 app.listen(app.get('port'), () => {
     console.log(`Servidor en el puerto ${app.get('port')}`);
-    console.log(Spaces)
+    
 });

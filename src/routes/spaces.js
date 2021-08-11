@@ -2,7 +2,8 @@ const { Router } = require('express');
 const router = new Router();
 const _ = require('underscore');
 
-const spaces = [1,2,3];
+const spaces = [1,2,3,4];
+
 
 router.get('/', (req, res) => {
     res.json(spaces);
@@ -49,5 +50,6 @@ router.delete('/:id', (req, res) => {
         res.status(405).json({error: 'Ocurrio un error al intentar eliminar un nuevo espacio'});
     }
 });
-
-module.exports = router, spaces;
+ 
+module.exports = router;
+//module.exports= spaces;
