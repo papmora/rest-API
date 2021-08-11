@@ -39,7 +39,7 @@ router.delete('/:id', (req, res) => {
     const {id} = req.params;
     if (id) {
         _.each(reservations, (reservation, i) => {
-            if (reservation.id == id) {
+            if (reservation.spaceId == id) {
                 reservations.splice(i, 1);
             }
         });

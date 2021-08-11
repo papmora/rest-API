@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
             res.json(space)
         }
     });
-    //res.status(405).json({error: 'Ocurrio un error, el id ingresado no se encuentra registrado'});   
+    res.status(405).json({error: 'Ocurrio un error, el id ingresado no se encuentra registrado'});   
 
 });
 
@@ -63,4 +63,4 @@ router.delete('/:id', (req, res) => {
 });
  
 module.exports = router;
-//module.exports= spaces;
+
