@@ -13,12 +13,12 @@ router.post('/', (req, res) => {
     let date = new Date();
     _.each(spaces, (space, i) => {
         if (space.estado === 'free') {
-            space.estado = 'taken';
             let spaceId=space.id;
             let hour= date.getHours();
             const {placa} = req.body;
             const newReservation = { ...req.body,spaceId,hour };
             if (placa) {
+                space.estado = 'taken';
                 reservations.push(newReservation);
                 res.json(reservations);
             } else {
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
         }
         
     });
-    //res.status(405).json({error: 'Ocurrio un error al intentar registrar una nueva reservacion, no hay espacios vacios'});
+    res.status(405).json({error: 'Ocurrio un error al intentar registrar una nueva reservacion, no hay espacios vacios'});
 
     
     
