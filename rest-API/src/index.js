@@ -5,6 +5,33 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
+const swaggerUI= require("swagger-ui-express");
+const swaggerJsDocs = require ("swagger-jsdoc");
+const https = require ("https");
+const fs = require("fs");
+const path = require ("path");
+
+
+
+/** configuracion y opciones para swagger */
+const options ={
+    definition:{
+        openapi:"3.0.0",
+        info:{
+            title: "api-rest",
+            version: "1.0.0",
+            description : "Taller SOA, rest-api"
+        },
+        servers:[
+            {url:"http://localhost:3000"}
+        ],
+    },
+    apis:["./routes/*.js"]
+}
+
+const specs = swaggerJsDocs(options)
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs))
 
 
 
@@ -15,8 +42,6 @@ app.use(cors({
 }));
 
 
-/** configuracion de puertos, como defecto se pone el puerto 3000*/ 
-app.set('port', process.env.PORT || 3000);
 
 /** uso de las dependencias, morgan para ver en terminal lo que se recibe
  * express.json para la lectura de los mime type del tipo json
@@ -29,8 +54,13 @@ app.use(express.json());
 app.use('/api/spaces', require('./routes/spaces'));
 app.use('/api/reservations', require('./routes/reservations'));
 
-/** Se inicia el servidor en el puerto determinado o bien el 3000 por defecto */
-app.listen(app.get('port'), () => {
-    console.log(`Servidor en el puerto ${app.get('port')}`);
-    
-});
+
+const sslServer = https.createServer(
+    {
+        key: fs.readFileSync(path.join(__dirname,"cert", "key.pem")),
+        cert: fs.readFileSync(path.join(__dirname,"cert", "cert.pem"))
+    },
+    app
+)
+
+sslServer.listen(3200, ()=> console.log("Servidor seguro en puerto 3200"))
