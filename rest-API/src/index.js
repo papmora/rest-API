@@ -23,11 +23,12 @@ const options ={
             description : "Taller SOA, rest-api"
         },
         servers:[
-            {url:"http://localhost:3000"}
+            {url:"https://localhost:3200",
+        },
         ],
     },
-    apis:["./routes/*.js"]
-}
+    apis:["src/routes/*.js"],
+};
 
 const specs = swaggerJsDocs(options)
 

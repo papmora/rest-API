@@ -3,10 +3,46 @@ const router = new Router();
 const _ = require('underscore');
 const spaces = require('../memory/memorySpaces');
 const reservations = require('../memory/memoryReservations');
+const lib = require("./lib");
 
+/**
+ *@swagger
+ * components:
+ *  schemas:
+ *      Reservation:
+ *          type: objet
+ *          required:
+ *              -placa
+ *          properties:
+ *              spaceId:
+ *                  type: string
+ *                  description: id del espacio que esta ocupando
+ *              placa:
+ *                  type: string
+ *                  description: numero de placa del vehiculo
+ *              hour:
+ *                  type:date
+ *                  description:hora en la que se reservó el espacio del vehiculo  
+ */
 
 router.get('/', (req, res) => {
     res.json(reservations);
+});
+
+router.get('/reservation', lib.paginatedResults(reservations), (req, res) => {
+    res.json(res.paginatedResults);
+});
+
+router.get('/placa/:placa', (req, res) => {
+    const { placa } = req.params;
+    placaArray=[];
+    _.each(reservations, (reservation, i) => {
+        if (reservation.placa === placa) {
+            placaArray.push(reservation);
+        }
+        
+    });
+    res.json(placaArray);  
 });
 
 router.post('/', (req, res) => {
